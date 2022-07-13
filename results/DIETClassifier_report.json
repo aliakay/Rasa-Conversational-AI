@@ -1,0 +1,76 @@
+{
+  "airline_code": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 1,
+    "confused_with": {}
+  },
+  "time": {
+    "precision": 0.96,
+    "recall": 1.0,
+    "f1-score": 0.9795918367346939,
+    "support": 24,
+    "confused_with": {}
+  },
+  "email": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 1,
+    "confused_with": {}
+  },
+  "airport_code": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 1,
+    "confused_with": {}
+  },
+  "GPE.destination": {
+    "precision": 0.9722222222222222,
+    "recall": 0.9722222222222222,
+    "f1-score": 0.9722222222222222,
+    "support": 36,
+    "confused_with": {
+      "GPE.departure": 1
+    }
+  },
+  "number": {
+    "precision": 1.0,
+    "recall": 0.9411764705882353,
+    "f1-score": 0.9696969696969697,
+    "support": 17,
+    "confused_with": {
+      "time": 1
+    }
+  },
+  "GPE.departure": {
+    "precision": 0.9565217391304348,
+    "recall": 0.9565217391304348,
+    "f1-score": 0.9565217391304348,
+    "support": 23,
+    "confused_with": {
+      "GPE.destination": 1
+    }
+  },
+  "micro avg": {
+    "precision": 0.970873786407767,
+    "recall": 0.970873786407767,
+    "f1-score": 0.970873786407767,
+    "support": 103
+  },
+  "macro avg": {
+    "precision": 0.9841062801932366,
+    "recall": 0.9814172045629846,
+    "f1-score": 0.9825761096834744,
+    "support": 103
+  },
+  "weighted avg": {
+    "precision": 0.97126213592233,
+    "recall": 0.970873786407767,
+    "f1-score": 0.9708257530726324,
+    "support": 103
+  },
+  "accuracy": 0.9938775510204082
+}

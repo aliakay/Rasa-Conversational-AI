@@ -1,0 +1,131 @@
+version: "3.1"
+
+rules:
+- rule: Say goodbye anytime the user says goodbye
+  steps:
+  - intent: goodbye
+  - action: action_bye
+
+- rule: answer out of scope
+  steps:
+  - intent: out_of_scope
+  - action: utter_out_of_scope
+
+- rule: answer chitchat when ever users want chitchat
+  steps:
+  - intent: chitchat
+  - action: utter_chitchat
+
+- rule: Say 'I am a bot' anytime the user challenges
+  steps:
+  - intent: bot_challenge
+  - action: utter_iamabot
+
+- rule: Ask the user to rephrase whenever they send a message with low NLU confidence
+  steps:
+  - intent: nlu_fallback
+  - action: utter_default
+
+- rule: Restart session
+  steps:
+  - intent: deny_form_start_again
+  - action: action_search_again
+
+- rule: Activate form when nothing given
+  steps:
+  - intent: inform_flight
+  - action: book_flight_form
+  - active_loop: book_flight_form
+
+- rule: Submit form when nothing given
+  condition:
+  - active_loop: book_flight_form
+  steps:
+  - action: book_flight_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: action_validate_form
+  - action: action_verify_flight
+
+- rule: Activate form when only destination city given
+  steps:
+  - intent: inform_book_flight_from_only_destination
+  - action: book_flight_from_destination_form
+  - active_loop: book_flight_from_destination_form
+
+- rule: Submit form when only destination city given
+  condition:
+  - active_loop: book_flight_from_destination_form
+  steps:
+  - action: book_flight_from_destination_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: action_verify_flight
+
+- rule: Activate form when only destination city and number of people given
+  steps:
+  - intent: inform_book_flight_from_only_destination_and_numberofpeople
+  - action: book_flight_from_destination_and_numberofpeople_form
+  - active_loop: book_flight_from_destination_and_numberofpeople_form
+
+- rule: Submit form when only destination city and number of people given
+  condition:
+  - active_loop: book_flight_from_destination_and_numberofpeople_form
+  steps:
+  - action: book_flight_from_destination_and_numberofpeople_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: action_verify_flight
+
+- rule: activate form when departure and destination cities given
+  steps:
+  - intent: inform_book_flight
+  - action: book_flight_v2_form
+  - active_loop: book_flight_v2_form
+
+- rule: submit form when departure and destination cities given
+  condition:
+  - active_loop: book_flight_v2_form
+  steps:
+  - action: book_flight_v2_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: action_verify_flight
+
+- rule: activate form when departure and destination and number of people given
+  steps:
+  - intent: inform_book_flight_with_numberofpeople
+  - action: book_flight_form_v4
+  - active_loop: book_flight_form_v4
+
+- rule: submit form when departure and destination and number of people given
+  condition:
+  - active_loop: book_flight_form_v4
+  steps:
+  - action: book_flight_form_v4
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: action_verify_flight
+
+- rule: activate form when departure and destination and dates are given
+  steps:
+  - intent: inform_book_flight_with_date
+  - action: book_flight_form_v3
+  - active_loop: book_flight_form_v3
+
+- rule: submit form when departure and destination and dates are given
+  condition:
+  - active_loop: book_flight_form_v3
+  steps:
+  - action: book_flight_form_v3
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: action_verify_flight
+
+

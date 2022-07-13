@@ -1,0 +1,10 @@
+[
+  {
+    "text": "ciao",
+    "intent": "greet",
+    "intent_prediction": {
+      "name": "deny",
+      "confidence": 0.13591115176677704
+    }
+  }
+]

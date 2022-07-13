@@ -1,0 +1,295 @@
+[
+  {
+    "text": "I would like to flight from Berlin to San Francisco beginning on april 25 and returning on may 16 for 2",
+    "entities": [
+      {
+        "start": 28,
+        "end": 34,
+        "value": "Berlin",
+        "entity": "GPE",
+        "role": "departure"
+      },
+      {
+        "start": 38,
+        "end": 51,
+        "value": "San Francisco",
+        "entity": "GPE",
+        "role": "destination"
+      },
+      {
+        "start": 65,
+        "end": 73,
+        "value": "april 25",
+        "entity": "time"
+      },
+      {
+        "start": 91,
+        "end": 97,
+        "value": "may 16",
+        "entity": "time"
+      },
+      {
+        "start": 102,
+        "end": 103,
+        "value": "2",
+        "entity": "number"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "GPE",
+        "start": 28,
+        "end": 34,
+        "confidence_entity": 0.9998283386230469,
+        "role": "departure",
+        "confidence_role": 0.9986603260040283,
+        "value": "Berlin",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "GPE",
+        "start": 38,
+        "end": 51,
+        "confidence_entity": 0.9996030926704407,
+        "role": "destination",
+        "confidence_role": 0.9888945817947388,
+        "value": "San Francisco",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "time",
+        "start": 65,
+        "end": 73,
+        "confidence_entity": 0.9434407353401184,
+        "value": "april 25",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "time",
+        "start": 91,
+        "end": 97,
+        "confidence_entity": 0.967144250869751,
+        "value": "may 16",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "time",
+        "start": 102,
+        "end": 103,
+        "confidence_entity": 0.9755537509918213,
+        "value": "2",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "GPE",
+        "start": 28,
+        "end": 34,
+        "confidence_entity": 0.9982277896843812,
+        "role": "departure",
+        "confidence_role": 0.9974748380976349,
+        "value": "Berlin",
+        "extractor": "CRFEntityExtractor"
+      },
+      {
+        "entity": "GPE",
+        "start": 38,
+        "end": 51,
+        "confidence_entity": 0.9915701604833291,
+        "role": "destination",
+        "confidence_role": 0.9740700886162338,
+        "value": "San Francisco",
+        "extractor": "CRFEntityExtractor"
+      },
+      {
+        "entity": "time",
+        "start": 65,
+        "end": 73,
+        "confidence_entity": 0.9766401665079257,
+        "value": "april 25",
+        "extractor": "CRFEntityExtractor"
+      },
+      {
+        "entity": "time",
+        "start": 91,
+        "end": 97,
+        "confidence_entity": 0.9775104230065101,
+        "value": "may 16",
+        "extractor": "CRFEntityExtractor"
+      },
+      {
+        "entity": "number",
+        "start": 102,
+        "end": 103,
+        "confidence_entity": 0.9803862205899831,
+        "value": "2",
+        "extractor": "CRFEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "book me a flight from Istanbul to Berlin for tomorrow",
+    "entities": [
+      {
+        "start": 22,
+        "end": 30,
+        "value": "Istanbul",
+        "entity": "GPE",
+        "role": "departure"
+      },
+      {
+        "start": 34,
+        "end": 40,
+        "value": "Berlin",
+        "entity": "GPE",
+        "role": "destination"
+      },
+      {
+        "start": 45,
+        "end": 53,
+        "value": "tomorrow",
+        "entity": "time"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "GPE",
+        "start": 22,
+        "end": 30,
+        "confidence_entity": 0.9998682737350464,
+        "role": "destination",
+        "confidence_role": 0.9738978743553162,
+        "value": "Istanbul",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "GPE",
+        "start": 34,
+        "end": 40,
+        "confidence_entity": 0.9998677968978882,
+        "role": "destination",
+        "confidence_role": 0.6185765266418457,
+        "value": "Berlin",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "time",
+        "start": 45,
+        "end": 53,
+        "confidence_entity": 0.9938837885856628,
+        "value": "tomorrow",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "GPE",
+        "start": 22,
+        "end": 30,
+        "confidence_entity": 0.9990707609532885,
+        "role": "departure",
+        "confidence_role": 0.9907057562573496,
+        "value": "Istanbul",
+        "extractor": "CRFEntityExtractor"
+      },
+      {
+        "entity": "GPE",
+        "start": 34,
+        "end": 40,
+        "confidence_entity": 0.9967500366609072,
+        "role": "destination",
+        "confidence_role": 0.9948413473058962,
+        "value": "Berlin",
+        "extractor": "CRFEntityExtractor"
+      },
+      {
+        "entity": "time",
+        "start": 45,
+        "end": 53,
+        "confidence_entity": 0.9313878188871246,
+        "value": "tomorrow",
+        "extractor": "CRFEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "what is the cost of a round trip flight from pittsburgh to atlanta for 2 people",
+    "entities": [
+      {
+        "start": 45,
+        "end": 55,
+        "value": "pittsburgh",
+        "entity": "GPE",
+        "role": "departure"
+      },
+      {
+        "start": 59,
+        "end": 66,
+        "value": "atlanta",
+        "entity": "GPE",
+        "role": "destination"
+      },
+      {
+        "start": 71,
+        "end": 72,
+        "value": "2",
+        "entity": "number"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "GPE",
+        "start": 45,
+        "end": 55,
+        "confidence_entity": 0.9994786381721497,
+        "role": "departure",
+        "confidence_role": 0.6888156533241272,
+        "value": "pittsburgh",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "GPE",
+        "start": 59,
+        "end": 66,
+        "confidence_entity": 0.9998024106025696,
+        "role": "departure",
+        "confidence_role": 0.7802765965461731,
+        "value": "atlanta",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "number",
+        "start": 71,
+        "end": 72,
+        "confidence_entity": 0.998033344745636,
+        "value": "2",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "GPE",
+        "start": 45,
+        "end": 55,
+        "confidence_entity": 0.9840025446206483,
+        "role": "departure",
+        "confidence_role": 0.9771745574440819,
+        "value": "pittsburgh",
+        "extractor": "CRFEntityExtractor"
+      },
+      {
+        "entity": "GPE",
+        "start": 59,
+        "end": 66,
+        "confidence_entity": 0.9717242051675526,
+        "role": "destination",
+        "confidence_role": 0.9886196066877722,
+        "value": "atlanta",
+        "extractor": "CRFEntityExtractor"
+      },
+      {
+        "entity": "number",
+        "start": 71,
+        "end": 72,
+        "confidence_entity": 0.9991415349456739,
+        "value": "2",
+        "extractor": "CRFEntityExtractor"
+      }
+    ]
+  }
+]

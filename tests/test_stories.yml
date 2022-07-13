@@ -1,0 +1,471 @@
+#### This file contains tests to evaluate that your bot behaves as expected.
+#### If you want to learn more, please see the docs: https://rasa.com/docs/rasa/testing-your-assistant
+
+stories:
+
+- story: inform flight happy path 
+  steps:
+  - user: |
+      hi!
+    intent: greet
+  - action: utter_greet
+  - user: |
+      good thanks
+    intent: mood_great
+  - action: utter_happy
+  - user: |
+      I want to book a flight
+    intent: inform_flight
+  - action: book_flight_form
+  - active_loop: book_flight_form
+  - slot_was_set:
+    - requested_slot: departure
+    - requested_slot: destination
+    - requested_slot: time
+    - requested_slot: no_of_people
+  - action: action_verify_flight
+  - user: |
+      Yes, I confirm.
+    intent: affirm
+  - action: utter_ask_wait
+  - action: action_search_flight
+  - action: utter_ask_book
+  - user: |
+      confirm.
+    intent: affirm
+  - action: utter_ask_email
+  - user: |
+      aliakay8@gmail.com
+    intent: inform_email
+  - action: action_send_flight_info
+  - user: |
+      No,thanks
+    intent: deny
+  - action: utter_ask_rate
+  - user: |
+      Very good
+    intent: mood_great
+  - action: utter_say_thanks
+  
+- story: inform flight sad path 
+  steps:
+  - user: |
+      hi!
+    intent: greet
+  - action: utter_greet
+  - user: |
+      good thanks
+    intent: mood_great
+  - action: utter_happy
+  - user: |
+      I want to book a flight
+    intent: inform_flight
+  - action: book_flight_form
+  - active_loop: book_flight_form
+  - slot_was_set:
+    - requested_slot: departure
+    - requested_slot: destination
+    - requested_slot: time
+    - requested_slot: no_of_people
+  - action: action_verify_flight
+  - user: |
+      Yes, I confirm.
+    intent: affirm
+  - action: utter_ask_wait
+  - action: action_search_flight
+  - action: utter_ask_book
+  - user: |
+      confirm.
+    intent: affirm
+  - action: utter_ask_email
+  - user: |
+      aliakay8@gmail.com
+    intent: inform_email
+  - action: action_send_flight_info
+  - user: |
+      No
+    intent: deny
+  - action: utter_ask_rate
+  - user: |
+      bad
+    intent: mood_unhappy
+  - action: utter_say_improve
+  
+- story: inform flight start again path
+  steps:
+  - user: |
+      hi!
+    intent: greet
+  - action: utter_greet
+  - user: |
+      good thanks
+    intent: mood_great
+  - action: utter_happy
+  - user: |
+      I want to book a flight
+    intent: inform_flight
+  - action: book_flight_form
+  - active_loop: book_flight_form
+  - slot_was_set:
+    - requested_slot: departure
+    - requested_slot: destination
+    - requested_slot: time
+    - requested_slot: no_of_people
+  - action: action_verify_flight
+  - user: |
+      start again
+    intent: deny_form_start_again
+  - action: action_search_again
+
+- story: inform flight form deny found ticket customer dont like it search flight again path 
+  steps:
+  - user: |
+      hi!
+    intent: greet
+  - action: utter_greet
+  - user: |
+      good thanks
+    intent: mood_great
+  - action: utter_happy
+  - user: |
+      I want to book a flight
+    intent: inform_flight
+  - action: book_flight_form
+  - active_loop: book_flight_form
+  - slot_was_set:
+    - requested_slot: departure
+    - requested_slot: destination
+    - requested_slot: time
+    - requested_slot: no_of_people
+  - action: action_verify_flight
+  - user: |
+      Yes, I confirm.
+    intent: affirm
+  - action: utter_ask_wait
+  - action: action_search_flight
+  - action: utter_ask_book
+  - user: |
+      Find me another
+    intent: deny_search_again
+  - action: action_search_flight_cheapest
+  - action: utter_ask_book
+  - user: |
+      Yes, I confirm.
+    intent: affirm
+  - action: utter_ask_email
+  - user: |
+      aliakay8@gmail.com
+    intent: inform_email
+  - action: action_send_flight_info
+  - user: |
+      No,thanks
+    intent: deny
+  - action: utter_ask_rate
+  - user: |
+      Very good
+    intent: mood_great
+  - action: utter_say_thanks
+
+#---------------------------------------
+
+- story: when user only say destination flight path 
+  steps:
+  - user: |
+      I want to go to Istanbul
+    intent: inform_book_flight_from_only_destination
+  - action: book_flight_from_destination_form
+  - active_loop: book_flight_from_destination_form
+  - slot_was_set:
+    - requested_slot: departure
+    - requested_slot: time
+    - requested_slot: no_of_people
+  - action: action_verify_flight
+  - user: |
+      Yes, I confirm.
+    intent: affirm
+  - action: utter_ask_wait
+  - action: action_search_flight
+  - action: utter_ask_book
+  - user: |
+      confirm.
+    intent: affirm
+  - action: utter_ask_email
+  - user: |
+      aliakay8@gmail.com
+    intent: inform_email
+  - action: action_send_flight_info
+  - user: |
+      No,thanks
+    intent: deny
+  - action: utter_ask_rate
+  - user: |
+      Very good
+    intent: mood_great
+  - action: utter_say_thanks
+
+#---------------------
+- story: when user only say destination and number of people flight path 
+  steps:
+  - user: |
+      Book me a flight to London for two people
+    intent: inform_book_flight_from_only_destination_and_numberofpeople
+  - action: book_flight_from_destination_and_numberofpeople_form
+  - active_loop: book_flight_from_destination_and_numberofpeople_form
+  - slot_was_set:
+    - requested_slot: departure
+    - requested_slot: time
+  - action: action_verify_flight
+  - user: |
+      Yes, I confirm.
+    intent: affirm
+  - action: utter_ask_wait
+  - action: action_search_flight
+  - action: utter_ask_book
+  - user: |
+      confirm.
+    intent: affirm
+  - action: utter_ask_email
+  - user: |
+      aliakay8@gmail.com
+    intent: inform_email
+  - action: action_send_flight_info
+  - user: |
+      No,thanks
+    intent: deny
+  - action: utter_ask_rate
+  - user: |
+      Very good
+    intent: mood_great
+  - action: utter_say_thanks
+
+#---------------------
+
+- story: inform and book flight path 
+  steps:
+  - user: |
+      Book me a flight from Roma to Milano
+    intent: inform_book_flight
+  - action: book_flight_v2_form
+  - active_loop: book_flight_v2_form
+  - slot_was_set:
+    - requested_slot: no_of_people
+    - requested_slot: time
+  - action: action_verify_flight
+  - user: |
+      Yes, I confirm.
+    intent: affirm
+  - action: utter_ask_wait
+  - action: action_search_flight
+  - action: utter_ask_book
+  - user: |
+      confirm.
+    intent: affirm
+  - action: utter_ask_email
+  - user: |
+      aliakay8@gmail.com
+    intent: inform_email
+  - action: action_send_flight_info
+  - user: |
+      No,thanks
+    intent: deny
+  - action: utter_ask_rate
+  - user: |
+      Very good
+    intent: mood_great
+  - action: utter_say_thanks
+
+#---------------------
+
+- story: inform-book-flight with date path 
+  steps:
+  - user: |
+      Book me a flight from Roma to Milano on June sixth
+    intent: inform_book_flight_with_date
+  - action: book_flight_form_v3
+  - active_loop: book_flight_form_v3
+  - slot_was_set:
+    - requested_slot: no_of_people
+  - action: action_verify_flight
+  - user: |
+      Yes, I confirm.
+    intent: affirm
+  - action: utter_ask_wait
+  - action: action_search_flight
+  - action: utter_ask_book
+  - user: |
+      confirm.
+    intent: affirm
+  - action: utter_ask_email
+  - user: |
+      aliakay8@gmail.com
+    intent: inform_email
+  - action: action_send_flight_info
+  - user: |
+      No,thanks
+    intent: deny
+  - action: utter_ask_rate
+  - user: |
+      Very good
+    intent: mood_great
+  - action: utter_say_thanks
+
+
+#---------------------
+
+- story: when user say departure and destination and number of people path 
+  steps:
+  - user: |
+      Book me a flight from Roma to Milano for 4 people
+    intent: inform_book_flight_with_numberofpeople
+  - action: book_flight_form_v4
+  - active_loop: book_flight_form_v4
+  - slot_was_set:
+    - requested_slot: time
+  - action: action_verify_flight
+  - user: |
+      Yes, I confirm.
+    intent: affirm
+  - action: utter_ask_wait
+  - action: action_search_flight
+  - action: utter_ask_book
+  - user: |
+      confirm.
+    intent: affirm
+  - action: utter_ask_email
+  - user: |
+      aliakay8@gmail.com
+    intent: inform_email
+  - action: action_send_flight_info
+  - user: |
+      No,thanks
+    intent: deny
+  - action: utter_ask_rate
+  - user: |
+      Very good
+    intent: mood_great
+  - action: utter_say_thanks
+
+#---------------------
+
+- story: inform-book-flight with date path 
+  steps:
+  - user: |
+      I want to book a flight ticket to London from Roma on beginning on june 5 and returning on june 14 for 2 people.
+    intent: inform_book_flight_with_date_with_no_of_people
+  - action: action_verify_flight
+  - user: |
+      Yes, I confirm.
+    intent: affirm
+  - action: utter_ask_wait
+  - action: action_search_flight
+  - action: utter_ask_book
+  - user: |
+      confirm.
+    intent: affirm
+  - action: utter_ask_email
+  - user: |
+      aliakay8@gmail.com
+    intent: inform_email
+  - action: action_send_flight_info
+  - user: |
+      No,thanks
+    intent: deny
+  - action: utter_ask_rate
+  - user: |
+      Very good
+    intent: mood_great
+  - action: utter_say_thanks
+
+
+
+- story: happy path 1
+  steps:
+  - user: |
+      hello there!
+    intent: greet
+  - action: utter_greet
+  - user: |
+      amazing
+    intent: mood_great
+  - action: utter_happy
+- story: happy path 1
+  steps:
+  - user: |
+      hello there!
+    intent: greet
+  - action: utter_greet
+  - user: |
+      amazing
+    intent: mood_great
+  - action: utter_happy
+- story: happy path 2
+  steps:
+  - user: |
+      hello there!
+    intent: greet
+  - action: utter_greet
+  - user: |
+      amazing
+    intent: mood_great
+  - action: utter_happy
+  - user: |
+      bye-bye!
+    intent: goodbye
+  - action: utter_goodbye
+- story: sad path 1
+  steps:
+  - user: |
+      hello
+    intent: greet
+  - action: utter_greet
+  - user: |
+      not good
+    intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - user: |
+      yes
+    intent: affirm
+  - action: utter_happy
+- story: sad path 2
+  steps:
+  - user: |
+      hello
+    intent: greet
+  - action: utter_greet
+  - user: |
+      not good
+    intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - user: |
+      not really
+    intent: deny
+  - action: utter_goodbye
+- story: sad path 3
+  steps:
+  - user: |
+      hi
+    intent: greet
+  - action: utter_greet
+  - user: |
+      very terrible
+    intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - user: |
+      no
+    intent: deny
+  - action: utter_goodbye
+- story: say goodbye
+  steps:
+  - user: |
+      bye-bye!
+    intent: goodbye
+  - action: utter_goodbye
+- story: bot challenge
+  steps:
+  - user: |
+      are you a bot?
+    intent: bot_challenge
+  - action: utter_iamabot

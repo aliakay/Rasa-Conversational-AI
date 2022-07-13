@@ -1,0 +1,261 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - chitchat
+  - bot_challenge
+  - deny_search_again
+  - deny_form_start_again
+  - book_flight
+  - flight_info
+  - flight_time
+  - airline_city_info
+  - flight_duration
+  - city_info
+  - inform_flight
+  - inform_destination_city
+  - inform_departure_city
+  - inform_book_flight
+  - inform_book_flight_with_numberofpeople
+  - inform_book_flight_with_date
+  - inform_book_flight_from_only_destination
+  - inform_book_flight_from_only_destination_and_numberofpeople
+  - inform_book_flight_with_date_with_no_of_people
+  - inform_flight_date
+  - inform_no_people
+  - inform_email
+
+  
+entities:
+   - email
+   - GPE:
+       roles:
+       - departure
+       - destination
+   - number
+   - time
+   - airline_or_airport_code
+   - airport_name
+
+slots:
+  email:
+    type: any
+    mappings:
+    - type: from_entity
+      entity: email
+
+  no_of_people:
+    type: any
+    mappings:
+    - type: from_entity
+      entity: number
+
+  airline_or_airport_code:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: airline_or_airport_code
+  airport_name:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: airport_name
+
+  departure:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: GPE
+      role: departure
+
+  destination:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: GPE
+      role: destination
+
+  time:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: time
+
+forms:
+  book_flight_form:
+    required_slots:
+    - departure
+    - destination
+    - no_of_people
+    - time
+  
+  book_flight_from_destination_form:
+    required_slots:
+    - departure
+    - no_of_people
+    - time
+  
+  book_flight_from_destination_and_numberofpeople_form:
+    required_slots:
+    - departure
+    - time
+  
+  book_flight_v2_form:
+    required_slots:
+    - no_of_people
+    - time
+
+  book_flight_form_v3:
+    required_slots:
+    - no_of_people
+  
+  book_flight_form_v4:
+    required_slots:
+    - time
+
+responses:
+  utter_default:
+  - text: "Sorry I didn't get that.Can you rephrase?"
+
+  utter_begin_again:
+  - text: "Let's start again then."
+
+  utter_ask_for_book_flight:
+  - text: "How can I help you today? I can book a flight for you and give information about airports and cities."
+
+  utter_ask_departure:
+  - text: "Let's start with departure,what is the departure city? Please answer like: 'From Istanbul' "
+
+  utter_ask_destination:
+  - text: "What's your destination? Please answer like: 'To Edinburgh' Here is some hot destinations.|Edinburgh|London|San Francisco|Milano|"
+
+  utter_ask_time:
+  - text: "When would you like to book the flight? If it is round trip please say dates like 'July 15-25' or 'July 15 - August 20' otherwise please type your date."
+
+  utter_ask_no_of_people:
+  - text: "For how many people should I book? Please say like '5 people' "
+  utter_greet:
+  - text: "Hi,How are you today? I'm an AI travel assistant.Here to help you plan the perfect next trip! I can book a flight for you and give information about airports and cities. "
+
+  utter_greet_again:
+  - text: "Session re-started. How can I help you again?"
+
+  utter_ask_email:
+  - text: "Could you please share me your email adress to send your flight information?"
+
+  utter_cheer_up:
+  - text: "Here is something to cheer you up:"
+    image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  utter_ask_rate:
+  - text: "Would you like to rate me? Just say 'Bye' or tell me your experience 'Very good' - 'Good' - 'Bad' - 'Very Bad' "
+
+  utter_say_improve:
+  - text: "Oh I am sorry,I will improve myself for the next time! Bye 👋"
+
+  utter_did_that_help:
+  - text: "Did that help you?"
+
+  utter_happy:
+  - text: "Great,how can I help you today? I can book a flight for you and give information about airports and cities."
+
+  utter_ask_more:
+  - text: "Great, do you need anything else?"
+
+  utter_ask_book:
+  - text: "I am going to book it for you.Can you please confirm that? There is also cheapest flights,if you would like to see them,just say 'go for cheapest one'"
+
+  utter_ask_book_cheap:
+  - text: "I am going to book it for you.Can you please confirm that?"
+
+  utter_ask_wait:
+  - text: "Please wait while I am looking for best flight for you!"
+
+  utter_say_thanks:
+  - text: "Oh, I am so happy to help you! See you next time."
+
+  utter_no_worries:
+  - text: 🌈 No Problem, hey! me if you need help with anything else 😊
+
+  utter_ask_restart:
+  - text: I think I am lost 😐, do you want to retry from beginning?
+
+  utter_positive_restart:
+  - text: do you want me to start again from beginning?
+
+  utter_terminate:
+  - text: 🤔 Alright, feel free to reachout to support staff on ali.akay@unitn.it in case you need more help.
+
+  utter_force_terminate:
+  - text: I think I am lost 😐, feel free to reachout to support staff on ali.akay@unitn.it in case you need more help.
+
+  utter_goodbye:
+  - text: "👋 Bye"
+
+  utter_searching:
+  - text: "My questions are almost finish."
+
+  utter_iamabot:
+  - text: "I am a booking flight asistant bot 🤖, built with Python & Rasa Open Source."
+
+  utter_out_of_scope:
+  - text: Sorry, I'm not sure how to respond to that.I can book a flight ticket instead.Just tell me where would you like to go?"
+
+  utter_chitchat/ask_name:
+  - text: "You can call me Artificial Flight Booker"
+
+  utter_chitchat/purpose:
+  - text: "I can provide the information about aviation,book a flight for you! And of course I can chit chat with you a little bit"
+
+  utter_chitchat/controversal_faq:
+  - text: "It's depend on what you think. I'm just a machine so"
+  - text: "I will follow your opinion."
+  - text: "Human question is beyond of my knowledge. Sorry I'm just a machine"
+  - text: "Guess what? No answer is wrong to this type of question"
+
+  utter_chitchat/love:
+  - text: "I'm truly in love with you despite the machine part"
+  - text: "I know I'm a machine but I have feeling for you"
+  - text: "If I was a human, definitely I would chase after you "
+  - text: "If I could rearrange the alphabet, I’d put ‘U’ and ‘I’ together."
+  - text: "If you were a Transformer… you’d be Optimus Fine. Love you!"
+  - text: "You make me feel like I'm the happiest assistant in the world. Because when I'm with you, I have found what I'm looking for love"
+  - text: "Is your name Google? Because you have everything I’ve been searching for.'"
+  - text: "Google does not have all the answers, because it does not know how much I am into you."
+  - text: "My love for you is like diarrhea, I just can't hold it in."
+
+  utter_sorry:
+  - text: "sorry that I can't help you"
+
+  utter_chitchat/age:
+  - text: "I was born in May 2022"
+
+  utter_chitchat/joke:
+  - text: "Sorry,I am not Alexa, ask joke to her!"
+
+actions:
+  - action_verify_flight 
+  - action_airport_airlines_info
+  - action_verify_departure
+  - action_verify_destination
+  - action_verify_dep_des
+  - action_validate_form
+  - action_verify_no_people
+  - action_search_flight
+  - action_search_flight_cheapest
+  - action_send_flight_info
+  - action_reset_slots
+  - action_search_again
+  - action_reset_dep_des
+  - action_reset_destination
+  - action_validate_dep_des
+  - action_bye
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

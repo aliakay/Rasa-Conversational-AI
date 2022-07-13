@@ -1,0 +1,70 @@
+[
+  {
+    "text": "Destination city is Edinburgh",
+    "entities": [
+      {
+        "start": 20,
+        "end": 29,
+        "value": "Edinburgh",
+        "entity": "GPE",
+        "role": "destination"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "GPE",
+        "start": 20,
+        "end": 29,
+        "confidence_entity": 0.9990426898002625,
+        "role": "destination",
+        "confidence_role": 0.9995917677879333,
+        "value": "Edinburgh",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "GPE",
+        "start": 20,
+        "end": 29,
+        "confidence_entity": 0.9889737914588247,
+        "role": "departure",
+        "confidence_role": 0.5449346844046891,
+        "value": "Edinburgh",
+        "extractor": "CRFEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "departure city is San Francisco",
+    "entities": [
+      {
+        "start": 18,
+        "end": 31,
+        "value": "San Francisco",
+        "entity": "GPE",
+        "role": "departure"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "GPE",
+        "start": 18,
+        "end": 31,
+        "confidence_entity": 0.9929063320159912,
+        "role": "departure",
+        "confidence_role": 0.9565252661705017,
+        "value": "San Francisco",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "GPE",
+        "start": 18,
+        "end": 31,
+        "confidence_entity": 0.9923147762224388,
+        "role": "destination",
+        "confidence_role": 0.6195415577618123,
+        "value": "San Francisco",
+        "extractor": "CRFEntityExtractor"
+      }
+    ]
+  }
+]

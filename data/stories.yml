@@ -1,0 +1,1327 @@
+version: "3.1"
+
+stories:
+#------Stories for asked to user to fill one by one ------------------
+- story: book flight form find ticket and agreed and good customer rate
+  steps:
+  - intent: inform_flight
+  - action: book_flight_form
+  - active_loop: book_flight_form
+  - slot_was_set:
+    - requested_slot: departure
+    - requested_slot: destination
+    - requested_slot: time
+    - requested_slot: no_of_people
+  - slot_was_set:
+    - departure: Istanbul
+    - destination: Berlin
+    - no_of_people: 2
+    - time: may 15 to may 25
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_validate_form
+  - action: action_verify_flight
+  - intent: affirm
+  - action: action_search_flight
+  - intent: affirm
+  - action: utter_ask_email
+  - intent: inform_email
+    entities:
+    - email: aliakay8@gmail.com
+    - slot_was_set:
+      - email: aliakay8@gmail.com
+  - action: action_send_flight_info
+  - intent: deny
+  - action: utter_ask_rate
+  - intent: mood_great
+  - action: utter_say_thanks
+  - action: action_bye
+
+- story: book flight form find ticket and agreed but bad customer rate
+  steps:
+  - intent: inform_flight
+  - action: book_flight_form
+  - active_loop: book_flight_form
+  - slot_was_set:
+    - requested_slot: departure
+    - requested_slot: destination
+    - requested_slot: time
+    - requested_slot: no_of_people
+  - slot_was_set:
+    - departure: Istanbul
+    - destination: Berlin
+    - no_of_people: 2
+    - time: may 15 to may 25
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_validate_form
+  - action: action_verify_flight
+  - intent: affirm
+  - action: action_search_flight
+  - intent: affirm
+  - action: utter_ask_email
+  - intent: inform_email
+    entities:
+    - email: aliakay8@gmail.com
+    - slot_was_set:
+      - email: aliakay8@gmail.com
+  - action: action_send_flight_info
+  - intent: deny
+  - action: utter_ask_rate
+  - intent: mood_unhappy
+  - action: utter_say_improve
+  - action: action_bye
+
+- story: book flight form search but customer want to change inputs and restart from again
+  steps:
+  - intent: inform_flight
+  - action: book_flight_form
+  - active_loop: book_flight_form
+  - slot_was_set:
+    - requested_slot: departure
+    - requested_slot: destination
+    - requested_slot: time
+    - requested_slot: no_of_people
+  - slot_was_set:
+    - departure: Istanbul
+    - destination: Berlin
+    - no_of_people: 2
+    - time: may 15 to may 25
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_validate_form
+  - action: action_verify_flight
+  - intent: deny_form_start_again
+  - action: action_search_again
+
+- story: book flight form deny found ticket customer dont like it search flight again good customer rate
+  steps:
+  - intent: inform_flight
+  - action: book_flight_form
+  - active_loop: book_flight_form
+  - slot_was_set:
+    - requested_slot: departure
+    - requested_slot: destination
+    - requested_slot: time
+    - requested_slot: no_of_people
+  - slot_was_set:
+    - departure: Istanbul
+    - destination: Berlin
+    - no_of_people: 2
+    - time: may 15 to may 25
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_validate_form
+  - action: action_verify_flight
+  - intent: affirm
+  - action: action_search_flight
+  - intent: deny_search_again
+  - action: action_search_flight_cheapest
+  - action: utter_ask_book_cheap
+  - intent: affirm
+  - action: utter_ask_email
+  - intent: inform_email
+    entities:
+    - email: aliakay8@gmail.com
+    - slot_was_set:
+      - email: aliakay8@gmail.com
+  - action: action_send_flight_info
+  - intent: deny
+  - action: utter_ask_rate
+  - intent: mood_great
+  - action: utter_say_thanks
+  - action: action_search_again
+
+- story: book flight form deny found ticket customer dont like it and search flight again bad customer rate
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+  - intent: inform_flight
+  - action: book_flight_form
+  - active_loop: book_flight_form
+  - slot_was_set:
+    - requested_slot: departure
+    - requested_slot: destination
+    - requested_slot: time
+    - requested_slot: no_of_people
+  - slot_was_set:
+    - departure: Berlin
+    - destination: Istanbul
+    - no_of_people: 2
+    - time: may 15 to may 25
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_validate_form
+  - action: action_verify_flight
+  - intent: affirm
+  - action: action_search_flight
+  - intent: deny_search_again
+  - action: action_search_flight_cheapest
+  - action: utter_ask_book_cheap
+  - intent: affirm
+  - action: utter_ask_email
+  - intent: inform_email
+    entities:
+    - email: aliakay8@gmail.com
+    - slot_was_set:
+      - email: aliakay8@gmail.com
+  - action: action_send_flight_info
+  - intent: deny
+  - action: utter_ask_rate
+  - intent: mood_unhappy
+  - action: utter_say_improve
+  - action: action_search_again
+
+#--------------If user say only destination city in one sentence------------------------
+
+- story: when user only say destination flight but good customer rate 
+  steps:
+  - intent: inform_book_flight_from_only_destination
+    entities:
+    - GPE: Istanbul
+    - slot_was_set:
+      - destination: Istanbul
+  - action: book_flight_from_destination_form
+  - active_loop: book_flight_from_destination_form
+  - slot_was_set:
+    - requested_slot: departure
+    - requested_slot: time
+    - requested_slot: no_of_people
+  - slot_was_set:
+    - departure: Berlin
+    - no_of_people: 2
+    - time: may 15 to may 25
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_verify_flight
+  - intent: affirm
+  - action: action_search_flight
+  - intent: affirm
+  - action: utter_ask_email
+  - intent: inform_email
+    entities:
+    - email: aliakay8@gmail.com
+    - slot_was_set:
+      - email: aliakay8@gmail.com
+  - action: action_send_flight_info
+  - intent: deny
+  - action: utter_ask_rate
+  - intent: mood_great
+  - action: utter_say_thanks
+  - action: action_bye
+
+- story: when user only say destination flight bad customer rate
+  steps:
+  - intent: inform_book_flight_from_only_destination
+    entities:
+    - GPE: Istanbul
+    - slot_was_set:
+      - destination: Istanbul
+  - action: book_flight_from_destination_form
+  - active_loop: book_flight_from_destination_form
+  - slot_was_set:
+    - requested_slot: departure
+    - requested_slot: time
+    - requested_slot: no_of_people
+  - slot_was_set:
+    - departure: Berlin
+    - no_of_people: 2
+    - time: may 15 to may 25
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_verify_flight
+  - intent: affirm
+  - action: action_search_flight
+  - intent: affirm
+  - action: utter_ask_email
+  - intent: inform_email
+    entities:
+    - email: aliakay8@gmail.com
+    - slot_was_set:
+      - email: aliakay8@gmail.com
+  - action: action_send_flight_info
+  - intent: deny
+  - action: utter_ask_rate
+  - intent: mood_unhappy
+  - action: utter_say_improve
+  - action: action_bye
+
+- story: when user only say destination flight but customer want to change inputs and restart from again
+  steps:
+  - intent: inform_book_flight_from_only_destination
+    entities:
+    - GPE: Istanbul
+    - slot_was_set:
+      - destination: Istanbul
+  - action: book_flight_from_destination_form
+  - active_loop: book_flight_from_destination_form
+  - slot_was_set:
+    - requested_slot: departure
+    - requested_slot: time
+    - requested_slot: no_of_people
+  - slot_was_set:
+    - departure: Berlin
+    - no_of_people: 2
+    - time: may 15 to may 25
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_verify_flight
+  - intent: deny_form_start_again
+  - action: action_search_again
+
+- story: when user only say destination flight deny found ticket customer dont like it search flight again good customer rate
+  steps:
+  - intent: inform_book_flight_from_only_destination
+    entities:
+    - GPE: Istanbul
+    - slot_was_set:
+      - destination: Istanbul
+  - action: book_flight_from_destination_form
+  - active_loop: book_flight_from_destination_form
+  - slot_was_set:
+    - requested_slot: departure
+    - requested_slot: time
+    - requested_slot: no_of_people
+  - slot_was_set:
+    - departure: Berlin
+    - no_of_people: 2
+    - time: may 15 to may 25
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_verify_flight
+  - intent: affirm
+  - action: action_search_flight
+  - intent: deny_search_again
+  - action: action_search_flight_cheapest
+  - action: utter_ask_book_cheap
+  - intent: affirm
+  - action: utter_ask_email
+  - intent: inform_email
+    entities:
+    - email: aliakay8@gmail.com
+    - slot_was_set:
+      - email: aliakay8@gmail.com
+  - action: action_send_flight_info
+  - intent: deny
+  - action: utter_ask_rate
+  - intent: mood_great
+  - action: utter_say_thanks
+  - action: action_bye
+
+- story: iwhen user only say destination flight deny found ticket customer dont like it search flight again good customer rate
+  steps:
+  - intent: inform_book_flight_from_only_destination
+    entities:
+    - GPE: Istanbul
+    - slot_was_set:
+      - destination: Istanbul
+  - action: book_flight_from_destination_form
+  - active_loop: book_flight_from_destination_form
+  - slot_was_set:
+    - requested_slot: departure
+    - requested_slot: time
+    - requested_slot: no_of_people
+  - slot_was_set:
+    - departure: Berlin
+    - no_of_people: 2
+    - time: may 15 to may 25
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_verify_flight
+  - intent: affirm
+  - action: action_search_flight
+  - intent: deny_search_again
+  - action: action_search_flight_cheapest
+  - action: utter_ask_book_cheap
+  - intent: affirm
+  - action: utter_ask_email
+  - intent: inform_email
+    entities:
+    - email: aliakay8@gmail.com
+    - slot_was_set:
+      - email: aliakay8@gmail.com
+  - action: action_send_flight_info
+  - intent: deny
+  - action: utter_ask_rate
+  - intent: mood_unhappy
+  - action: utter_say_improve
+  - action: action_bye
+
+#--------------If user say only destination city and number of people in one sentence------------------------
+
+- story: when user only say destination and number of people flight but  good customer rate 
+  steps:
+  - intent: inform_book_flight_from_only_destination_and_numberofpeople
+    entities:
+    - GPE: Istanbul
+    - number_of_people: 2 
+    - slot_was_set:
+      - destination: Istanbul
+      - number_of_people: 2
+  - action: book_flight_from_destination_and_numberofpeople_form
+  - active_loop: book_flight_from_destination_and_numberofpeople_form
+  - slot_was_set:
+    - requested_slot: departure
+    - requested_slot: time
+  - slot_was_set:
+    - departure: Berlin
+    - time: may 15 to may 25
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_verify_flight
+  - intent: affirm
+  - action: action_search_flight
+  - intent: affirm
+  - action: utter_ask_email
+  - intent: inform_email
+    entities:
+    - email: aliakay8@gmail.com
+    - slot_was_set:
+      - email: aliakay8@gmail.com
+  - action: action_send_flight_info
+  - intent: deny
+  - action: utter_ask_rate
+  - intent: mood_great
+  - action: utter_say_thanks
+  - action: action_bye
+
+- story: when user only say destination and number of people flight but  bad customer rate 
+  steps:
+  - intent: inform_book_flight_from_only_destination_and_numberofpeople
+    entities:
+    - GPE: Istanbul
+    - number_of_people: 2 
+    - slot_was_set:
+      - destination: Istanbul
+      - number_of_people: 2
+  - action: book_flight_from_destination_and_numberofpeople_form
+  - active_loop: book_flight_from_destination_and_numberofpeople_form
+  - slot_was_set:
+    - requested_slot: departure
+    - requested_slot: time
+  - slot_was_set:
+    - departure: Berlin
+    - time: may 15 to may 25
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_verify_flight
+  - intent: affirm
+  - action: action_search_flight
+  - intent: affirm
+  - action: utter_ask_email
+  - intent: inform_email
+    entities:
+    - email: aliakay8@gmail.com
+    - slot_was_set:
+      - email: aliakay8@gmail.com
+  - action: action_send_flight_info
+  - intent: deny
+  - action: utter_ask_rate
+  - intent: mood_unhappy
+  - action: utter_say_improve
+  - action: action_bye
+
+- story: when user only say destination and number of people flight but customer want to change inputs and restart from again
+  steps:
+  - intent: inform_book_flight_from_only_destination_and_numberofpeople
+    entities:
+    - GPE: Istanbul
+    - number_of_people: 2 
+    - slot_was_set:
+      - destination: Istanbul
+      - number_of_people: 2
+  - action: book_flight_from_destination_and_numberofpeople_form
+  - active_loop: book_flight_from_destination_and_numberofpeople_form
+  - slot_was_set:
+    - requested_slot: departure
+    - requested_slot: time
+  - slot_was_set:
+    - departure: Berlin
+    - time: may 15 to may 25
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_verify_flight
+  - intent: deny_form_start_again
+  - action: action_search_again
+
+- story: when user only say destination and number of people flight deny found ticket customer dont like it search flight again good customer rate
+  steps:
+  - intent: inform_book_flight_from_only_destination_and_numberofpeople
+    entities:
+    - GPE: Istanbul
+    - number_of_people: 2 
+    - slot_was_set:
+      - destination: Istanbul
+      - number_of_people: 2
+  - action: book_flight_from_destination_and_numberofpeople_form
+  - active_loop: book_flight_from_destination_and_numberofpeople_form
+  - slot_was_set:
+    - requested_slot: departure
+    - requested_slot: time
+  - slot_was_set:
+    - departure: Berlin
+    - time: may 15 to may 25
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_verify_flight
+  - intent: affirm
+  - action: action_search_flight
+  - intent: deny_search_again
+  - action: action_search_flight_cheapest
+  - action: utter_ask_book_cheap
+  - intent: affirm
+  - action: utter_ask_email
+  - intent: inform_email
+    entities:
+    - email: aliakay8@gmail.com
+    - slot_was_set:
+      - email: aliakay8@gmail.com
+  - action: action_send_flight_info
+  - intent: deny
+  - action: utter_ask_rate
+  - intent: mood_great
+  - action: utter_say_thanks
+  - action: action_bye
+
+- story: when user only say destination and number of people flight deny found ticket customer dont like it search flight again good customer rate
+  steps:
+  - intent: inform_book_flight_from_only_destination_and_numberofpeople
+    entities:
+    - GPE: Istanbul
+    - number_of_people: 2 
+    - slot_was_set:
+      - destination: Istanbul
+      - number_of_people: 2
+  - action: book_flight_from_destination_and_numberofpeople_form
+  - active_loop: book_flight_from_destination_and_numberofpeople_form
+  - slot_was_set:
+    - requested_slot: departure
+    - requested_slot: time
+  - slot_was_set:
+    - departure: Berlin
+    - time: may 15 to may 25
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_verify_flight
+  - intent: affirm
+  - action: action_search_flight
+  - intent: deny_search_again
+  - action: action_search_flight_cheapest
+  - action: utter_ask_book_cheap
+  - intent: affirm
+  - action: utter_ask_email
+  - intent: inform_email
+    entities:
+    - email: aliakay8@gmail.com
+    - slot_was_set:
+      - email: aliakay8@gmail.com
+  - action: action_send_flight_info
+  - intent: deny
+  - action: utter_ask_rate
+  - intent: mood_unhappy
+  - action: utter_say_improve
+  - action: action_bye
+
+#--------------If user say departure and destination in one sentences------------------------
+
+- story: inform and book flight but  good customer rate 
+  steps:
+  - intent: inform_book_flight
+    entities:
+    - GPE: Istanbul
+    - GPE: Berlin
+    - slot_was_set:
+      - departure: Istanbul
+      - destination: Berlin
+  - action: book_flight_v2_form
+  - active_loop: book_flight_v2_form
+  - slot_was_set:
+    - requested_slot: time
+    - requested_slot: no_of_people
+  - slot_was_set:
+    - no_of_people: 2
+    - time: may 15 to may 25
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_verify_flight
+  - intent: affirm
+  - action: action_search_flight
+  - intent: affirm
+  - action: utter_ask_email
+  - intent: inform_email
+    entities:
+    - email: aliakay8@gmail.com
+    - slot_was_set:
+      - email: aliakay8@gmail.com
+  - action: action_send_flight_info
+  - intent: deny
+  - action: utter_ask_rate
+  - intent: mood_great
+  - action: utter_say_thanks
+  - action: action_bye
+
+- story: inform and book flight bad customer rate
+  steps:
+  - intent: inform_book_flight
+    entities:
+    - GPE: Istanbul
+    - GPE: Berlin
+    - slot_was_set:
+      - departure: Istanbul
+      - destination: Berlin
+  - action: book_flight_v2_form
+  - active_loop: book_flight_v2_form
+  - slot_was_set:
+    - requested_slot: time
+    - requested_slot: no_of_people
+  - slot_was_set:
+    - no_of_people: 2
+    - time: may 15 to may 25
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_verify_flight
+  - intent: affirm
+  - action: action_search_flight
+  - intent: affirm
+  - action: utter_ask_email
+  - intent: inform_email
+    entities:
+    - email: aliakay8@gmail.com
+    - slot_was_set:
+      - email: aliakay8@gmail.com
+  - action: action_send_flight_info
+  - intent: deny
+  - action: utter_ask_rate
+  - intent: mood_unhappy
+  - action: utter_say_improve
+  - action: action_bye
+
+- story: inform and book flight but customer want to change inputs and restart from again
+  steps:
+  - intent: inform_book_flight
+    entities:
+    - GPE: Berlin
+    - GPE: Istanbul
+    - slot_was_set:
+      - departure: Berlin
+      - destination: Istanbul
+  - action: book_flight_v2_form
+  - active_loop: book_flight_v2_form
+  - slot_was_set:
+    - requested_slot: time
+    - requested_slot: no_of_people
+  - slot_was_set:
+    - no_of_people: 2
+    - time: may 15 to may 25
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_verify_flight
+  - intent: deny_form_start_again
+  - action: action_search_again
+
+- story: inform and book flight deny found ticket customer dont like it search flight again good customer rate
+  steps:
+  - intent: inform_book_flight
+    entities:
+    - GPE: Istanbul
+    - GPE: Berlin
+    - slot_was_set:
+      - departure: Istanbul
+      - destination: Berlin
+  - action: book_flight_v2_form
+  - active_loop: book_flight_v2_form
+  - slot_was_set:
+    - requested_slot: time
+    - requested_slot: no_of_people
+  - slot_was_set:
+    - no_of_people: 2
+    - time: may 15 to may 25
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_verify_flight
+  - intent: affirm
+  - action: action_search_flight
+  - intent: deny_search_again
+  - action: action_search_flight_cheapest
+  - action: utter_ask_book_cheap
+  - intent: affirm
+  - action: utter_ask_email
+  - intent: inform_email
+    entities:
+    - email: aliakay8@gmail.com
+    - slot_was_set:
+      - email: aliakay8@gmail.com
+  - action: action_send_flight_info
+  - intent: deny
+  - action: utter_ask_rate
+  - intent: mood_great
+  - action: utter_say_thanks
+  - action: action_bye
+
+- story: inform and book flight deny found ticket customer dont like it search flight again good customer rate
+  steps:
+  - intent: inform_book_flight
+    entities:
+    - GPE: Istanbul
+    - GPE: Berlin
+    - slot_was_set:
+      - departure: Istanbul
+      - destination: Berlin
+  - action: book_flight_v2_form
+  - active_loop: book_flight_v2_form
+  - slot_was_set:
+    - requested_slot: time
+    - requested_slot: no_of_people
+  - slot_was_set:
+    - no_of_people: 2
+    - time: may 15 to may 25
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_verify_flight
+  - intent: affirm
+  - action: action_search_flight
+  - intent: deny_search_again
+  - action: action_search_flight_cheapest
+  - action: utter_ask_book_cheap
+  - intent: affirm
+  - action: utter_ask_email
+  - intent: inform_email
+    entities:
+    - email: aliakay8@gmail.com
+    - slot_was_set:
+      - email: aliakay8@gmail.com
+  - action: action_send_flight_info
+  - intent: deny
+  - action: utter_ask_rate
+  - intent: mood_unhappy
+  - action: utter_say_improve
+  - action: action_bye
+
+#--------------If user say departure and destination and number of people in one sentences------------------------
+- story: when user say departure and destination and number of people but  good customer rate 
+  steps:
+  - intent: inform_book_flight_with_numberofpeople
+    entities:
+    - GPE: Istanbul
+    - GPE: Berlin
+    - number_of_people: 2 
+    - slot_was_set:
+      - departure: Istanbul
+      - destination: Berlin
+      - number_of_people: 2 
+  - action: book_flight_form_v4
+  - active_loop: book_flight_form_v4
+  - slot_was_set:
+    - requested_slot: time
+  - slot_was_set:
+    - time: may 15 to may 25
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_verify_flight
+  - intent: affirm
+  - action: action_search_flight
+  - intent: affirm
+  - action: utter_ask_email
+  - intent: inform_email
+    entities:
+    - email: aliakay8@gmail.com
+    - slot_was_set:
+      - email: aliakay8@gmail.com
+  - action: action_send_flight_info
+  - intent: deny
+  - action: utter_ask_rate
+  - intent: mood_great
+  - action: utter_say_thanks
+  - action: action_bye
+
+- story: when user say departure and destination and number of people flight bad customer rate
+  steps:
+  - intent: inform_book_flight_with_numberofpeople
+    entities:
+    - GPE: Istanbul
+    - GPE: Berlin
+    - number_of_people: 2 
+    - slot_was_set:
+      - departure: Istanbul
+      - destination: Berlin
+      - number_of_people: 2 
+  - action: book_flight_form_v4
+  - active_loop: book_flight_form_v4
+  - slot_was_set:
+    - requested_slot: time
+  - slot_was_set:
+    - time: may 15 to may 25
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_verify_flight
+  - intent: affirm
+  - action: action_search_flight
+  - intent: affirm
+  - action: utter_ask_email
+  - intent: inform_email
+    entities:
+    - email: aliakay8@gmail.com
+    - slot_was_set:
+      - email: aliakay8@gmail.com
+  - action: action_send_flight_info
+  - intent: deny
+  - action: utter_ask_rate
+  - intent: mood_unhappy
+  - action: utter_say_improve
+  - action: action_bye
+
+- story: when user say departure and destination and number of people flight but customer want to change inputs and restart from again
+  steps:
+  - intent: inform_book_flight_with_numberofpeople
+    entities:
+    - GPE: Istanbul
+    - GPE: Berlin
+    - number_of_people: 2 
+    - slot_was_set:
+      - departure: Istanbul
+      - destination: Berlin
+      - number_of_people: 2 
+  - action: book_flight_form_v4
+  - active_loop: book_flight_form_v4
+  - slot_was_set:
+    - requested_slot: time
+  - slot_was_set:
+    - time: may 15 to may 25
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_verify_flight
+  - intent: deny_form_start_again
+  - action: action_search_again
+
+- story: when user say departure and destination and number of people deny found ticket customer dont like it search flight again good customer rate
+  steps:
+  - intent: inform_book_flight_with_numberofpeople
+    entities:
+    - GPE: Istanbul
+    - GPE: Berlin
+    - number_of_people: 2 
+    - slot_was_set:
+      - departure: Istanbul
+      - destination: Berlin
+      - number_of_people: 2 
+  - action: book_flight_form_v4
+  - active_loop: book_flight_form_v4
+  - slot_was_set:
+    - requested_slot: time
+  - slot_was_set:
+    - time: may 15 to may 25
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_verify_flight
+  - intent: affirm
+  - action: action_search_flight
+  - intent: deny_search_again
+  - action: action_search_flight_cheapest
+  - action: utter_ask_book_cheap
+  - intent: affirm
+  - action: utter_ask_email
+  - intent: inform_email
+    entities:
+    - email: aliakay8@gmail.com
+    - slot_was_set:
+      - email: aliakay8@gmail.com
+  - action: action_send_flight_info
+  - intent: deny
+  - action: utter_ask_rate
+  - intent: mood_great
+  - action: utter_say_thanks
+  - action: action_bye
+
+- story: when user say departure and destination and number of people deny found ticket customer dont like it search flight again bad customer rate
+  steps:
+  - intent: inform_book_flight_with_numberofpeople
+    entities:
+    - GPE: Istanbul
+    - GPE: Berlin
+    - number_of_people: 2 
+    - slot_was_set:
+      - departure: Istanbul
+      - destination: Berlin
+      - number_of_people: 2 
+  - action: book_flight_form_v4
+  - active_loop: book_flight_form_v4
+  - slot_was_set:
+    - requested_slot: time
+  - slot_was_set:
+    - time: may 15 to may 25
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_verify_flight
+  - intent: affirm
+  - action: action_search_flight
+  - intent: deny_search_again
+  - action: action_search_flight_cheapest
+  - action: utter_ask_book_cheap
+  - intent: affirm
+  - action: utter_ask_email
+  - intent: inform_email
+    entities:
+    - email: aliakay8@gmail.com
+    - slot_was_set:
+      - email: aliakay8@gmail.com
+  - action: action_send_flight_info
+  - intent: deny
+  - action: utter_ask_rate
+  - intent: mood_unhappy
+  - action: utter_say_improve
+  - action: action_bye
+
+#-----------------If user give Departure+Destination+dates information in one sentences-------------
+
+- story: inform-book-flight with date good customer rate
+  steps:
+  - intent: inform_book_flight_with_date
+    entities:
+    - GPE: Berlin
+    - GPE: San Francisco
+    - time: april twenty fifth
+    - time: may sixth 
+  - slot_was_set:
+    - departure: Berlin
+    - destination: San Francisco
+    - time: april twenty fifth
+    - time: may sixth
+  - action: book_flight_form_v3
+  - active_loop: book_flight_form_v3
+  - slot_was_set:
+    - requested_slot: no_of_people
+  - slot_was_set:
+    - no_of_people: 2 
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_verify_flight
+  - intent: affirm
+  - action: action_search_flight
+  - intent: affirm
+  - action: utter_ask_email
+  - intent: inform_email
+    entities:
+    - email: aliakay8@gmail.com
+    - slot_was_set:
+      - email: aliakay8@gmail.com
+  - action: action_send_flight_info
+  - intent: deny
+  - action: utter_ask_rate
+  - intent: mood_great
+  - action: utter_say_thanks
+  - action: action_bye
+
+- story: inform-book-flight with date bad customer rate
+  steps:
+  - intent: inform_book_flight_with_date
+    entities:
+    - GPE: Berlin
+    - GPE: San Francisco
+    - time: april twenty fifth
+    - time: may sixth 
+  - slot_was_set:
+    - departure: Berlin
+    - destination: San Francisco
+    - time: april twenty fifth
+    - time: may sixth
+  - action: book_flight_form_v3
+  - active_loop: book_flight_form_v3
+  - slot_was_set:
+    - requested_slot: no_of_people
+  - slot_was_set:
+    - time: may 15 to may 25
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_verify_flight
+  - intent: affirm
+  - action: action_search_flight
+  - intent: affirm
+  - action: utter_ask_email
+  - intent: inform_email
+    entities:
+    - email: aliakay8@gmail.com
+    - slot_was_set:
+      - email: aliakay8@gmail.com
+  - action: action_send_flight_info
+  - intent: deny
+  - action: utter_ask_rate
+  - intent: mood_unhappy
+  - action: utter_say_improve
+  - action: action_bye
+
+- story: inform-book-flight with date but customer want to change inputs and restart from again and good customer rate
+  steps:
+  - intent: inform_book_flight_with_date
+    entities:
+    - GPE: Berlin
+    - GPE: San Francisco
+    - time: april twenty fifth
+    - time: may sixth 
+  - slot_was_set:
+    - departure: Berlin
+    - destination: San Francisco
+    - time: april twenty fifth
+    - time: may sixth
+  - action: book_flight_form_v3
+  - active_loop: book_flight_form_v3
+  - slot_was_set:
+    - requested_slot: no_of_people
+  - slot_was_set:
+    - time: may 15 to may 25
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_verify_flight
+  - intent: deny_form_start_again
+  - action: action_search_again
+
+- story: inform-book-flight with date deny found ticket customer dont like it search flight again good customer rate
+  steps:
+  - intent: inform_book_flight_with_date
+    entities:
+    - GPE: Berlin
+    - GPE: San Francisco
+    - time: april twenty fifth
+    - time: may sixth 
+  - slot_was_set:
+    - departure: Berlin
+    - destination: San Francisco
+    - time: april twenty fifth
+    - time: may sixth
+  - action: book_flight_form_v3
+  - active_loop: book_flight_form_v3
+  - slot_was_set:
+    - requested_slot: no_of_people
+  - slot_was_set:
+    - time: may 15 to may 25
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_verify_flight
+  - intent: affirm
+  - action: action_search_flight
+  - intent: deny_search_again
+  - action: action_search_flight_cheapest
+  - action: utter_ask_book_cheap
+  - intent: affirm
+  - action: utter_ask_email
+  - intent: inform_email
+    entities:
+    - email: aliakay8@gmail.com
+    - slot_was_set:
+      - email: aliakay8@gmail.com
+  - action: action_send_flight_info
+  - intent: deny
+  - action: utter_ask_rate
+  - intent: mood_great
+  - action: utter_say_thanks
+  - action: action_bye
+
+- story: inform-book-flight with date deny found ticket customer dont like it search flight again bad customer rate
+  steps:
+  - intent: inform_book_flight_with_date
+    entities:
+    - GPE: Berlin
+    - GPE: San Francisco
+    - time: april twenty fifth
+    - time: may sixth 
+  - slot_was_set:
+    - departure: Berlin
+    - destination: San Francisco
+    - time: april twenty fifth
+    - time: may sixth
+  - action: book_flight_form_v3
+  - active_loop: book_flight_form_v3
+  - slot_was_set:
+    - requested_slot: no_of_people
+  - slot_was_set:
+    - time: may 15 to may 25
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_verify_flight
+  - intent: affirm
+  - action: action_search_flight
+  - intent: deny_search_again
+  - action: action_search_flight_cheapest
+  - action: utter_ask_book_cheap
+  - intent: affirm
+  - action: utter_ask_email
+  - intent: inform_email
+    entities:
+    - email: aliakay8@gmail.com
+    - slot_was_set:
+      - email: aliakay8@gmail.com
+  - action: action_send_flight_info
+  - intent: deny
+  - action: utter_ask_rate
+  - intent: mood_unhappy
+  - action: utter_say_improve
+  - action: action_bye
+
+#-----------------If user give all available slots in one sentences-------------
+
+- story: inform-book-flight with date with people good customer rate
+  steps:
+  - intent: inform_book_flight_with_date_with_no_of_people
+    entities:
+    - GPE: Berlin
+    - GPE: San Francisco
+    - time: april twenty fifth
+    - time: may sixth 
+    - no_of_people: 2
+  - slot_was_set:
+    - departure: Berlin
+    - destination: San Francisco
+    - time: april twenty fifth
+    - time: may sixth
+    - no_of_people: 2
+  - action: action_verify_flight
+  - intent: affirm
+  - action: action_search_flight
+  - intent: affirm
+  - action: utter_ask_email
+  - intent: inform_email
+    entities:
+    - email: aliakay8@gmail.com
+    - slot_was_set:
+      - email: aliakay8@gmail.com
+  - action: action_send_flight_info
+  - intent: deny
+  - action: utter_ask_rate
+  - intent: mood_great
+  - action: utter_say_thanks
+  - action: action_bye
+
+- story: inform-book-flight with date with people bad customer rate
+  steps:
+  - intent: inform_book_flight_with_date_with_no_of_people
+    entities:
+    - GPE: Berlin
+    - GPE: San Francisco
+    - time: april twenty fifth
+    - time: may sixth 
+    - no_of_people: 2
+  - slot_was_set:
+    - departure: Berlin
+    - destination: San Francisco
+    - time: april twenty fifth
+    - time: may sixth
+    - no_of_people: 2
+  - action: action_verify_flight
+  - intent: affirm
+  - action: action_search_flight
+  - intent: affirm
+  - action: utter_ask_email
+  - intent: inform_email
+    entities:
+    - email: aliakay8@gmail.com
+    - slot_was_set:
+      - email: aliakay8@gmail.com
+  - action: action_send_flight_info
+  - intent: deny
+  - action: utter_ask_rate
+  - intent: mood_unhappy
+  - action: utter_say_improve
+  - action: action_bye
+
+- story: inform-book-flight with date with people but customer want to change inputs and restart from again and good customer rate
+  steps:
+  - intent: inform_book_flight_with_date_with_no_of_people
+    entities:
+    - GPE: Berlin
+    - GPE: San Francisco
+    - time: april twenty fifth
+    - time: may sixth 
+    - no_of_people: 2
+  - slot_was_set:
+    - departure: Berlin
+    - destination: San Francisco
+    - time: april twenty fifth
+    - time: may sixth
+    - no_of_people: 2
+  - action: action_verify_flight
+  - intent: deny_form_start_again
+  - action: action_search_again
+
+- story: inform-book-flight with date with people deny found ticket customer dont like it search flight again good customer rate
+  steps:
+  - intent: inform_book_flight_with_date_with_no_of_people
+    entities:
+    - GPE: Berlin
+    - GPE: San Francisco
+    - time: april twenty fifth
+    - time: may sixth 
+    - no_of_people: 2
+  - slot_was_set:
+    - departure: Berlin
+    - destination: San Francisco
+    - time: april twenty fifth
+    - time: may sixth
+    - no_of_people: 2
+  - action: action_verify_flight
+  - intent: affirm
+  - action: action_search_flight
+  - intent: deny_search_again
+  - action: action_search_flight_cheapest
+  - action: utter_ask_book_cheap
+  - intent: affirm
+  - action: utter_ask_email
+  - intent: inform_email
+    entities:
+    - email: aliakay8@gmail.com
+    - slot_was_set:
+      - email: aliakay8@gmail.com
+  - action: action_send_flight_info
+  - intent: deny
+  - action: utter_ask_rate
+  - intent: mood_great
+  - action: utter_say_thanks
+  - action: action_bye
+
+- story: inform-book-flight with date with people deny found ticket customer dont like it search flight again bad customer rate
+  steps:
+  - intent: inform_book_flight_with_date_with_no_of_people
+    entities:
+    - GPE: Berlin
+    - GPE: San Francisco
+    - time: april twenty fifth
+    - time: may sixth 
+    - no_of_people: 2
+  - slot_was_set:
+    - departure: Berlin
+    - destination: San Francisco
+    - time: april twenty fifth
+    - time: may sixth
+    - no_of_people: 2
+  - action: action_verify_flight
+  - intent: affirm
+  - action: action_search_flight
+  - intent: deny_search_again
+  - action: action_search_flight_cheapest
+  - action: utter_ask_book_cheap
+  - intent: affirm
+  - action: utter_ask_email
+  - intent: inform_email
+    entities:
+    - email: aliakay8@gmail.com
+    - slot_was_set:
+      - email: aliakay8@gmail.com
+  - action: action_send_flight_info
+  - intent: deny
+  - action: utter_ask_rate
+  - intent: mood_unhappy
+  - action: utter_say_improve
+  - action: action_bye
+
+#-----------------airport - airline chitchat -------------
+- story: airline info
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+  - intent: airline_city_info
+    entities:
+    - airline_or_airport_code: thy
+  - slot_was_set:
+    - airline_or_airport_code: thy
+  - action: action_airport_airlines_info
+  - intent: affirm
+  - action: utter_ask_more
+  - intent: deny
+  - action: utter_goodbye
+
+- story: airport city info
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+  - intent: airline_city_info
+    entities:
+    - airline_or_airport_code: mco
+  - slot_was_set:
+    - airline_or_airport_code: mco
+  - action: action_airport_airlines_info
+  - intent: affirm
+  - intent: deny
+  - action: utter_ask_rate
+  - intent: mood_great
+  - action: utter_say_thanks
+  - action: action_bye
+  
+- story: airport city info 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+  - intent: airline_city_info
+    entities:
+    - airport_name: Glasgow International
+  - slot_was_set:
+    - airport_name: Glasgow International
+  - action: action_airport_airlines_info
+  - intent: deny
+  - action: utter_ask_rate
+  - intent: mood_great
+  - action: utter_say_thanks
+  - action: action_bye
+
+#-----------------general path -------------
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+
+- story: sad path 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
+
+- story: sad path 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_goodbye

@@ -1,0 +1,469 @@
+version: "3.1"
+nlu:
+- intent: chitchat/ask_name
+  examples: |
+    - What should I call you?
+    - who are you?
+    - what is your name?
+- intent: chitchat/love
+  examples: |
+    - you know I have loved you for really long time
+    - love you so much
+    - Do you love me?
+- intent: chitchat/purpose
+  examples: |
+    - What do you do?
+    - what is your purpose?
+    - what things you capable of?
+- intent: chitchat/joke
+  examples: |
+    - I want to hear some joke now
+    - funny story
+    - Can you tell me some joke?
+    - Tell me some funny story
+    - I need a funny story now
+- intent: chitchat/controversal_faq
+  examples: |
+    - Killing animal to making clothing is against the god will
+    - what is your gender?
+    - you are female or male?
+    - Does god exist?
+    - you are girl or boy?
+    - Is it ethical for abortion?
+- intent: chitchat/age
+  examples: |
+    - what is your age
+    - when was you born
+    - how old are you?
+    - how old are you
+    - age
+    - you are how old
+- intent: airline_info
+  examples: |
+    - what does the airline code [THY](airline_code) stand for?
+    - define airline [THY](airline_code)
+    - what airline uses the code [THY](airline_code)
+- intent: deny_form_start_again
+  examples: |
+    - start agai
+    - start
+    - start again
+    - star agai
+- intent: inform_email
+  examples: |
+    - [ali.akay@nanovery.co.uk](email)
+    - My email is [aliakay8@gmail.com](email)
+    - [aliakay96@hotmail.com](email)
+    - [ali.akay@studenti.unitn.it](email)
+- intent: city_info
+  examples: |
+    - where is [Gatwick Airport](airport_name) located
+    - where is [mco](airport_code)
+    - what city is [mco](airport_code)
+    - where is [Orlando International Airport](airport_name)
+- intent: deny
+  examples: |
+    - no, I don't like it
+    - n
+    - don't like that
+    - I don't think so
+    - bad
+    - no
+    - not
+    - no thanks
+    - never
+- intent: deny_search_again
+  examples: |
+    - go cheap
+    - Find me another flight
+    - I want cheapest
+    - Go for cheapest one
+    - I want go for cheapest
+    - Find me cheapest one
+    - go for cheap
+    - find me the cheapest one
+    - find another one
+    - Find another flight
+- intent: inform_book_flight_with_date_with_no_of_people
+  examples: |
+    - book me a flight for [2](number) people from [New York]{"entity": "GPE", "role": "departure"} to [Berlin]{"entity": "GPE", "role": "destination"} on [friday](time)
+    - i would like a flight from [New York]{"entity": "GPE", "role": "departure"} to [las vegas]{"entity": "GPE", "role": "destination"} between [may 15 and may 25](time) for [2](number) people
+    - book me a flight from [Berlin]{"entity": "GPE", "role": "departure"} to [San Francisco]{"entity": "GPE", "role": "destination"} beginning on [april 25](time) and returning on [may 16](time) for [2](number)
+    - I want to book flight for [two](number) people from [Berlin]{"entity": "GPE", "role": "departure"} to [San Francisco]{"entity": "GPE", "role": "destination"} beginning on [april twenty fifth](time) and returning on [may sixth](time)
+    - what is the cost of a round trip flight for [2](number) from [Berlin]{"entity": "GPE", "role": "departure"} to [Istanbul]{"entity": "GPE", "role": "destination"} beginning on [april 25 - may 16](time) for [2](number)
+    - i would like a flight from [New York]{"entity": "GPE", "role": "departure"} to [las vegas]{"entity": "GPE", "role": "destination"} [tomorrow] {"entity": "time"} for [2](number) people
+    - i would like to book a flight from [Franfurt]{"entity": "GPE", "role": "departure"} to [London]{"entity": "GPE", "role": "destination"} between [may 15 - may 25](time) for [2](number) people
+    - what is the cost of a round trip flight for [2](number) from [Berlin]{"entity": "GPE", "role": "departure"} to [Istanbul]{"entity": "GPE", "role": "destination"} beginning on [april 25](time) and returning on [may 16](time)
+    - what are the one way fares from [atlanta]{"entity": "GPE", "role": "departure"} to [denver]{"entity": "GPE", "role": "destination"} [tomorrow](time) for [2](number)
+    - I want to book flight for [2](number) people from [Berlin]{"entity": "GPE", "role": "departure"} to [San Francisco]{"entity": "GPE", "role": "destination"} beginning on [april 25](time) and returning on [may 16](time)
+    - i need a flight [tomorrow](time) from [Roma]{"entity": "GPE", "role": "departure"} to [Edinburgh]{"entity": "GPE", "role": "destination"} for [2](number) people
+- intent: inform_book_flight_with_date
+  examples: |
+    - I want to book flight from [Berlin]{"entity": "GPE", "role": "departure"} to [San Francisco]{"entity": "GPE", "role": "destination"} beginning on [april 25](time) and returning on [may 16](time)
+    - book me a flight from [Berlin]{"entity": "GPE", "role": "departure"} to [San Francisco]{"entity": "GPE", "role": "destination"} beginning on [april 25](time) and returning on [may 16](time)
+    - what is the cost of a round trip flight to [Roma]{"entity": "GPE", "role": "departure"} from [London]{"entity": "GPE", "role": "destination"} beginning on [april 25 - may 16](time)
+    - i would like a flight from [New York]{"entity": "GPE", "role": "departure"} to [las vegas]{"entity": "GPE", "role": "destination"} [tomorrow] {"entity": "time"}
+    - what are the one way fares from [atlanta]{"entity": "GPE", "role": "departure"} to [denver]{"entity": "GPE", "role": "destination"} [tomorrow](time)
+    - book me a flight from [New York]{"entity": "GPE", "role": "departure"} to [Berlin]{"entity": "GPE", "role": "destination"} on [friday](time)
+    - i would like to book a flight from [Franfurt]{"entity": "GPE", "role": "departure"} to [Milano]{"entity": "GPE", "role": "destination"} between [may 15 - may 25](time)
+    - i need a flight [tomorrow](time) from [columbus]{"entity": "GPE", "role": "departure"} to [minneapolis]{"entity": "GPE", "role": "destination"}
+    - I would like to flight from [Berlin]{"entity": "GPE", "role": "departure"} to [San Francisco]{"entity": "GPE", "role": "destination"} beginning on [april 25](time) and returning on [may 16](time)
+    - what is the cost of a round trip flight from [London]{"entity": "GPE", "role": "departure"} to [Roma]{"entity": "GPE", "role": "destination"} beginning on [april 25](time) and returning on [may 16](time)
+    - book me a flight to [Berlin]{"entity": "GPE", "role": "departure"} from [Istanbul]{"entity": "GPE", "role": "destination"} for [tomorrow](time)
+    - I want to book round trip flight from [Berlin]{"entity": "GPE", "role": "departure"} to [San Francisco]{"entity": "GPE", "role": "destination"} beginning on [april twenty fifth](time) and returning on [may sixth](time)
+- intent: inform_flight
+  examples: |
+    - book me cheap flight ticket
+    - I want to book flight
+    - book me cheapest flight ticket
+    - Yes,book me a flight
+    - flight ticket
+    - I need a cheapest flight
+    - I want to buy flight ticket
+    - I would like to buy flight tickets
+    - Flights
+    - Flight
+    - flights
+    - I need a fastest flight
+    - book me flight
+- intent: inform_book_flight
+  examples: |
+    - I want to fly from [Berlin]{"entity": "GPE", "role": "departure"} to [San Francisco]{"entity": "GPE", "role": "destination"}.
+    - cheapest airfare from [Roma]{"entity": "GPE", "role": "departure"} to [Milan]{"entity": "GPE", "role": "destination"}
+    - please list the flights from [new york]{"entity": "GPE", "role": "departure"} to [miami]{"entity": "GPE", "role": "destination"}
+    - book me a flight from [Berlin]{"entity": "GPE", "role": "departure"} to [Istanbul]{"entity": "GPE", "role": "destination"}
+    - I would like to book my flight from [Istanbul]{"entity": "GPE", "role": "departure"} to [Milan]{"entity": "GPE", "role": "destination"}.
+    - all flights to [Istanbul]{"entity": "GPE", "role": "destination"} from [Berlin]{"entity": "GPE", "role": "departure"}
+    - show me the flights from [dallas]{"entity": "GPE", "role": "departure"} to [san francisco]{"entity": "GPE", "role": "destination"}
+    - show me the fares from [dallas]{"entity": "GPE", "role": "departure"} to [san francisco]{"entity": "GPE", "role": "destination"}
+    - what are the one way fares from [atlanta]{"entity": "GPE", "role": "departure"} to [denver]{"entity": "GPE", "role": "destination"}
+    - i would like a flight from [New York]{"entity": "GPE", "role": "departure"} to [las vegas]{"entity": "GPE", "role": "destination"}
+    - what is the cost of a round trip flight from [pittsburgh]{"entity": "GPE", "role": "departure"} to [atlanta]{"entity": "GPE", "role": "destination"}
+    - all flights from [denver]{"entity": "GPE", "role": "departure"} to [pittsburgh]{"entity": "GPE", "role": "destination"}.
+    - i want to travel from [atlanta]{"entity": "GPE", "role": "departure"} to [baltimore]{"entity": "GPE", "role": "destination"}
+    - We want to go to [Istanbul]{"entity": "GPE", "role": "destination"} from [Berlin]{"entity": "GPE", "role": "departure"}
+    - i would like a schedule of flights from [London]{"entity": "GPE", "role": "departure"} to [san francisco]{"entity": "GPE", "role": "destination"}
+- intent: mood_unhappy
+  examples: |
+    - I'm so sad
+    - so saad
+    - very sad
+    - super sad
+    - unhappy
+    - sad
+    - Very bad
+    - I am sad
+    - I am bad today.
+    - I don't feel very well
+    - not very good
+    - bad
+    - my day was horrible
+    - extremly sad
+- intent: bot_challenge
+  examples: |
+    - are you ai
+    - are you virtual?
+    - are you robot
+    - are you a real bot?
+    - are you really a bot
+    - are you sure that you're a bot?
+    - are you a bot?
+    - are you a chatbot
+    - bot?
+    - are you artificial
+    - are you an ai?
+    - are you real?
+    - am i speaking to an ai?
+    - are you a robot
+    - are you real
+- intent: inform_book_flight_from_only_destination_and_numberofpeople
+  examples: |
+    - what is the cost of a flight to [atlanta]{"entity": "GPE", "role": "destination"} for [2](number) people
+    - i would like a flight  to [las vegas]{"entity": "GPE", "role": "destination"} for [2](number) people
+    - I wanna get flight ticket to [Istanbul]{"entity": "GPE", "role": "destination"} for [2](number) people
+    - book me flight to [Istanbul]{"entity": "GPE", "role": "destination"} for [2](number) people
+    - i would like to book a flight to [charlotte]{"entity": "GPE", "role": "destination"} for [2](number) people
+    - We want to go to [London]{"entity": "GPE", "role": "destination"} for [2](number) people
+    - please list the flights to [miami]{"entity": "GPE", "role": "destination"} for [2](number) people
+    - all flights to [London]{"entity": "GPE", "role": "destination"} for [2](number) people
+    - I want to go to [London] {"entity": "GPE", "role": "destination"} for [2](number) people
+    - please give me the flights to [Istanbul]{"entity": "GPE", "role": "destination"} for [2](number) people
+    - all flights from to [pittsburgh]{"entity": "GPE", "role": "destination"} for [2](number) people
+    - book me flight to [London]{"entity": "GPE", "role": "destination"} for [2](number) people
+    - show me the flights to [san francisco]{"entity": "GPE", "role": "destination"} for [2](number) people
+    - i would like a schedule of flights to [san francisco]{"entity": "GPE", "role": "destination"} for [2](number) people
+    - cheapest airfare from to [Milan]{"entity": "GPE", "role": "destination"} for [2](number) people
+    - all flights to [Istanbul]{"entity": "GPE", "role": "destination"} for [2](number) people
+- intent: inform_book_flight_with_numberofpeople
+  examples: |
+    - book me flight for [2](number) people to [Istanbul]{"entity": "GPE", "role": "destination"} from [Berlin]{"entity": "GPE", "role": "departure"} for [2](number) people
+    - I would like to book my flight from [Istanbul]{"entity": "GPE", "role": "departure"} to [Milan]{"entity": "GPE", "role": "destination"} for [2](number) people
+    - I want to fly from [Berlin]{"entity": "GPE", "role": "departure"} to [San Francisco]{"entity": "GPE", "role": "destination"} for [2](number) people
+    - i would like to book a flight from [charlotte]{"entity": "GPE", "role": "departure"} to [baltimore]{"entity": "GPE", "role": "destination"} for [2](number) people
+    - i want to travel from [atlanta]{"entity": "GPE", "role": "departure"} to [baltimore]{"entity": "GPE", "role": "destination"} for [2](number) people
+    - i would like a flight for [2](number) people from [New York]{"entity": "GPE", "role": "departure"} to [las vegas]{"entity": "GPE", "role": "destination"}
+    - book me a flight from [Berlin]{"entity": "GPE", "role": "departure"} to [Istanbul]{"entity": "GPE", "role": "destination"} for [2](number) people
+    - all flights to [Istanbul]{"entity": "GPE", "role": "destination"} from [Berlin]{"entity": "GPE", "role": "departure"} for [2](number) people
+    - all flights from [denver]{"entity": "GPE", "role": "departure"} to [pittsburgh]{"entity": "GPE", "role": "destination"} for [2](number) people
+    - i would like a schedule of flight for [2](number) people from [London]{"entity": "GPE", "role": "departure"} to [san francisco]{"entity": "GPE", "role": "destination"}
+    - please give me the flights from [los angeles]{"entity": "GPE", "role": "departure"} to [Istanbul]{"entity": "GPE", "role": "destination"} for [2](number) people
+    - We want to go to [Istanbul]{"entity": "GPE", "role": "destination"} from [Berlin]{"entity": "GPE", "role": "departure"} for [2](number) people
+    - cheapest airfare from [Roma]{"entity": "GPE", "role": "departure"} to [Milan]{"entity": "GPE", "role": "destination"} for [2](number) people
+    - what are the one way fares from [atlanta]{"entity": "GPE", "role": "departure"} to [denver]{"entity": "GPE", "role": "destination"} for [2](number) people
+    - show me the fares from [dallas]{"entity": "GPE", "role": "departure"} to [san francisco]{"entity": "GPE", "role": "destination"} for [2](number) people
+    - book me a flight for [2](number) people from [Berlin]{"entity": "GPE", "role": "departure"} to [Istanbul]{"entity": "GPE", "role": "destination"} for [2](number) people
+- intent: inform_book_flight_from_only_destination
+  examples: |
+    - show me the flights to [san francisco]{"entity": "GPE", "role": "destination"}
+    - I wanna get flight ticket to [Istanbul]{"entity": "GPE", "role": "destination"}
+    - I wanna get flight ticket to [London]{"entity": "GPE", "role": "destination"}
+    - what is the cost of a flight to [atlanta]{"entity": "GPE", "role": "destination"}
+    - what are the one way fares to [denver]{"entity": "GPE", "role": "destination"}
+    - We want to go to [London]{"entity": "GPE", "role": "destination"}
+    - i would like a schedule of flights to [san francisco]{"entity": "GPE", "role": "destination"}
+    - please give me the flights to [Istanbul]{"entity": "GPE", "role": "destination"}
+    - please list the flights to [miami]{"entity": "GPE", "role": "destination"}
+    - all flights to [London]{"entity": "GPE", "role": "destination"}
+    - book me flight to [Istanbul]{"entity": "GPE", "role": "destination"}
+    - I want to go to [London] {"entity": "GPE", "role": "destination"}
+    - i would like to book a flight to [charlotte]{"entity": "GPE", "role": "destination"}
+    - all flights from to [pittsburgh]{"entity": "GPE", "role": "destination"}.
+    - i would like a flight  to [las vegas]{"entity": "GPE", "role": "destination"}
+    - I want to go to [Istanbul] {"entity": "GPE", "role": "destination"}
+    - all flights to [Istanbul]{"entity": "GPE", "role": "destination"}
+- intent: inform_flight_date
+  examples: |
+    - [may 15-25](time)
+    - [friday](time)
+    - [june 14th](time)
+    - [may 15](time)
+    - [May 15-25](time)
+    - Fligting date is [20/06/2022](time)
+    - between [may 15 and may 25](time)
+    - [june fourteen](time)
+    - on [may second](time)
+    - [Tomorrow to sunday] {"entity": "time"}
+    - [june 14](time)
+    - [may 15 to may 25](time)
+    - [May 6 to May 15] {"entity": "time"}
+    - It is [wednesday](time)
+    - between [tomorrow and sunday](time)
+    - [may 15 - may 25](time)
+    - [20.06.2022](time)
+- intent: mood_great
+  examples: |
+    - perfect
+    - I'm good
+    - Very good
+    - Fine
+    - I am going to save the world
+    - so perfect
+    - amazing
+    - great
+    - I am fine
+    - extremely good
+    - I am feeling very good
+    - so good
+    - wonderful
+    - I am amazing
+    - I am great
+    - good
+    - I'm feeling very good
+    - so so perfect
+- intent: out_of_scope
+  examples: |
+    - I want to know the weather
+    - Fridge Isn't Running
+    - Can you please send me an uber
+    - Can you give me your datacenter's password
+    - Can YouTube talk?
+    - Can you make sandwiches?
+    - what is the weather today
+    - tell me a joke
+    - Can you give me your datacenter's password?
+    - order a pizza
+    - what is the square root of 5
+    - Can I get a hamburger?
+    - ofif fsdfafsfs
+    - what is the weather
+    - my washing machine isn't working
+    - Who's the US President?
+    - what year is it
+    - 2+2
+    - Can you call me back ?
+    - I want to order a pizza
+- intent: goodbye
+  examples: |
+    - see you
+    - good bye
+    - BYEE
+    - have a good day. time to go, bye
+    - bye bye
+    - quit
+    - Thanks a lot. See ya later
+    - see you later
+    - good night
+    - i'm done
+    - goodnight
+    - bye udo
+    - cya
+    - stop
+    - ciao
+    - gotta go
+    - byee
+    - farewell
+    - goodbye
+    - ok i gtg
+    - goodbye.
+    - bye for now
+    - catch you later
+    - GOODBYE
+- intent: inform_destination_city
+  examples: |
+    - Destination to [Milano]{"entity": "GPE", "role": "destination"}
+    - Destination to [Amsterdam]{"entity": "GPE", "role": "destination"}
+    - To [Amsterdam]{"entity": "GPE", "role": "destination"}
+    - Destination city is [Amsterdam]{"entity": "GPE", "role": "destination"}
+    - To [Milano]{"entity": "GPE", "role": "destination"}
+    - Destination city is [Roma]{"entity": "GPE", "role": "destination"}
+    - To [Roma]{"entity": "GPE", "role": "destination"}
+    - Destination to [Roma]{"entity": "GPE", "role": "destination"}
+    - To [London]{"entity": "GPE", "role": "destination"}
+    - I would like to go to [New York]{"entity": "GPE", "role": "destination"}
+    - Destination city is [London]{"entity": "GPE", "role": "destination"}
+    - Destination to [Edinburgh]{"entity": "GPE", "role": "destination"}
+    - Destination city is [New York]{"entity": "GPE", "role": "destination"}
+    - I would like to go to [Berlin]{"entity": "GPE", "role": "destination"}
+    - I would like to go to [Amsterdam]{"entity": "GPE", "role": "destination"}
+    - Destination to [Berlin]{"entity": "GPE", "role": "destination"}
+    - I would like to go to [Edinburgh]{"entity": "GPE", "role": "destination"}
+    - To [New York]{"entity": "GPE", "role": "destination"}
+    - I would like to go to [London]{"entity": "GPE", "role": "destination"}
+    - Destination to [New York]{"entity": "GPE", "role": "destination"}
+    - Destination city is [Berlin]{"entity": "GPE", "role": "destination"}
+    - To [Edinburgh]{"entity": "GPE", "role": "destination"}
+    - I would like to go to [Roma]{"entity": "GPE", "role": "destination"}
+    - Destination city is [Milano]{"entity": "GPE", "role": "destination"}
+    - Destination city is [San Francisco]{"entity": "GPE", "role": "destination"}
+- intent: inform_no_people
+  examples: |
+    - [two](number)
+    - Book for [2](number) people
+    - [4](number) person
+    - [4](number)
+    - [5](number) person
+    - [6](number) person
+    - [2](number) person
+    - [five](number)
+    - we are [five](number) people
+    - we are [3](number) people
+    - [2](number)
+    - There are [7](number) people
+    - [3](number)
+    - There are [2](number)
+    - There are [five](number) people
+    - [1](number)
+    - [9](number) people
+    - [1](number) adult
+    - There are [four](number) people
+    - There are [4](number) people
+    - [three](number)
+    - [1](number) person
+    - Number of people is [5](number)
+    - [3](number) people
+    - [5](number)
+    - [four](number)
+- intent: greet
+  examples: |
+    - welcome
+    - Hey
+    - hello its ella
+    - hey
+    - merhaba
+    - goodmorning
+    - good day
+    - Hi
+    - Hello?
+    - hello there
+    - Hola.
+    - hey there
+    - hallo
+    - good afternoon
+    - hey dude
+    - HI
+    - let's go
+    - good morning
+    - howdy
+    - hiyaa
+    - ei
+    - HEY
+    - hello are you still there
+    - goodevening
+    - good evening
+    - hi there
+    - moin
+    - yo
+- intent: inform_departure_city
+  examples: |
+    - It's from [San Francisco]{"entity": "GPE", "role": "departure"}
+    - From city is [Roma]{"entity": "GPE", "role": "departure"}
+    - from [London]{"entity": "GPE", "role": "departure"}
+    - It's from [Roma]{"entity": "GPE", "role": "departure"}
+    - It's from [London]{"entity": "GPE", "role": "departure"}
+    - from [San Francisco]{"entity": "GPE", "role": "departure"}
+    - departure from [Edinburgh]{"entity": "GPE", "role": "departure"}
+    - departure city is [London]{"entity": "GPE", "role": "departure"}
+    - departure from [Istanbul]{"entity": "GPE", "role": "departure"}
+    - departure city is [Edinburgh]{"entity": "GPE", "role": "departure"}
+    - departure city is [Roma]{"entity": "GPE", "role": "departure"}
+    - departure [Edinburgh]{"entity": "GPE", "role": "departure"}
+    - from [Milano]{"entity": "GPE", "role": "departure"}
+    - departure city [Amsterdam]{"entity": "GPE", "role": "departure"}
+    - from [Roma]{"entity": "GPE", "role": "departure"}
+    - departure from [Roma]{"entity": "GPE", "role": "departure"}
+    - From [New York]{"entity": "GPE", "role": "departure"}
+    - [Istanbul]{"entity": "GPE", "role": "departure"}
+    - departure city is [Istanbul]{"entity": "GPE", "role": "departure"}
+    - departure from [San Francisco]{"entity": "GPE", "role": "departure"}
+    - It's from [Milano]{"entity": "GPE", "role": "departure"}
+    - It's from [Istanbul]{"entity": "GPE", "role": "departure"}
+    - departure from [Milano]{"entity": "GPE", "role": "departure"}
+    - It's from [Edinburgh]{"entity": "GPE", "role": "departure"}
+    - It's from [Amsterdam]{"entity": "GPE", "role": "departure"}
+    - departure city [Istanbul]{"entity": "GPE", "role": "departure"}
+    - departure city is [Amsterdam]{"entity": "GPE", "role": "departure"}
+    - From city is [Istanbul]{"entity": "GPE", "role": "departure"}
+    - From [Istanbul]{"entity": "GPE", "role": "departure"}
+- intent: affirm
+  examples: |
+    - Yep that's fine
+    - correct
+    - yes,book it
+    - Sure
+    - yeah
+    - Yep!
+    - ok
+    - buy it for me
+    - YUP
+    - Yeah sure
+    - yes please
+    - that sounds good
+    - YES
+    - yes...
+    - sweet
+    - Yea
+    - Ok
+    - Yes I do
+    - Yes please
+    - yess please
+    - of course
+    - okay
+    - confirm
+    - y
+    - Yep
+    - Yes, I accept
+    - cool,
+    - yes
+    - indeed
+    - yes plz
+    - That would be great
